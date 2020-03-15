@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19002,
+  "devToolsPort": 19003,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 22888,
+  "packagerPid": 28191,
   "expoServerNgrokUrl": "https://gh-c7m.breim9.nurture.exp.direct",
   "packagerNgrokUrl": "https://packager.gh-c7m.breim9.nurture.exp.direct",
-  "ngrokPid": 22914
+  "ngrokPid": 28215
 }

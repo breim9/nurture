@@ -4,10 +4,11 @@ import styled, { css } from 'styled-components';
 import * as color from './src/constants/colors';
 
 import { connect } from 'react-redux';
-import { newHabit, removeHabit, logHabit, updateHabit, newStack, removeStack, updateStack, toggleStack } from './src/redux/actions';
+import { newHabit, removeHabit, logHabit, updateHabit, newStack, removeStack, updateStack, toggleStack, updatePrompt } from './src/redux/actions';
 import Timeline from './src/components/Timeline';
 import Stack from './src/components/Stack';
 import { PrimaryButton, DisabledButton, ConfirmationButton, WarningButton } from './src/components/Buttons';
+import { getHabitsInOrderNoIds, getStacksInOrderedArray } from './src/helpers.js';
 
 const Wrapper = styled.SafeAreaView`
     backgroundColor: #FCFCFC;
@@ -16,32 +17,37 @@ const Wrapper = styled.SafeAreaView`
 
 class NurtureApp extends Component {
 
+    getNextPrompt(stackId) {
+        // ! move this over to getHabitsInOrderedArray
+        let habits = getHabitsInOrderNoIds(stackId, this.props.stacks, this.props.habits);
+        if (habits.length === 0) {
+            return "Make your first habit";
+            // ! this should not be so, for the second stack
+        }
+        let newPrompt = habits.find(habit => habit.currentState === "incomplete");
+        newPrompt.currentState === undefined ?
+            newPrompt = "Complete Stack!" :
+            newPrompt = `${newPrompt.cue} - ${newPrompt.action}`;
+        return newPrompt;
+    }
+
     renderStacks() {
-        let stacksList = Object.entries(this.props.stacks);
-        let stacks = stacksList.map(item => {
+
+        let stackList = getStacksInOrderedArray(this.props.stacks);
+        if (stackList.length === 0) return;
+        let stacks = stackList.map(item => {
+            if (item === undefined) return;
             return (
                 <Stack
                     key={item[0]}
                     stackId={item[0]}
                     title={item[1].name}
-                    prompt={item[1].nextHabitInStackToDo}
+                    prompt={this.getNextPrompt(item[0])}
                     isOpen={item[1].stackIsOpen}
                 />
             )
         });
         return stacks;
-
-        let openState = "closed";
-        // if (this.props.stackIsOpen) openState = "opened";
-
-        //berg
-        /* 
-        
-        - I need to get the individual stack id
-        - add the openState as a prop on the container
-        - style accordingly
-        
-        */
     }
 
     render() {
@@ -79,6 +85,7 @@ const mapDispatchToProps = {
     removeStack,
     updateStack,
     toggleStack,
+    updatePrompt
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NurtureApp);

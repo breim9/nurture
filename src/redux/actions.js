@@ -29,11 +29,10 @@ export const removeHabit = (habit) => ({
     payload: habit
 });
 
-export const logHabit = (habitId, day, result) => ({
+export const logHabit = (habitId, result) => ({
     type: LOG_HABIT,
     payload: {
         habitId,
-        day,
         result
     }
 });

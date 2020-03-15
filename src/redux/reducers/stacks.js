@@ -1,23 +1,25 @@
 import { NEW_STACK, REMOVE_STACK, UPDATE_STACK, TOGGLE_STACK } from '../actionTypes';
 
 const initialState = {
-    'l23': {
-        name: 'Morning Routine',
+    'stk02': {
+        name: 'Lunch Routine',
         frequency: 'daily',
-        habitKeys: ['432adfds34',],
-        nextHabitInStackToDo: 'At 7:00am - Jog 2km',
+        habitKeys: [],
+        nextHabitInStackToDo: 'Prompt',
         completionState: 'incomplete',
+        order: 1,
         stackIsOpen: false,
         log: {
             '08082020': 'missed'
         },
     },
-    'mo3': {
-        name: 'Lunch Routine',
+    'stk01': {
+        name: 'Morning Routine',
         frequency: 'daily',
-        habitKeys: ['432adfds34',],
-        nextHabitInStackToDo: 'At 7:00am - Jog 2km',
+        habitKeys: ['432', '542', '183'],
+        nextHabitInStackToDo: 'Prompt',
         completionState: 'incomplete',
+        order: 0,
         stackIsOpen: false,
         log: {
             '08082020': 'missed'
