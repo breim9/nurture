@@ -28,18 +28,20 @@ export const removeHabit = (habit) => ({
     payload: habit
 });
 
-export const logHabit = (habit, result) => ({
+export const logHabit = (habitId, day, result) => ({
     type: LOG_HABIT,
     payload: {
-        habit,
+        habitId,
+        day,
         result
     }
 });
 
-export const updateHabit = (habit, update) => ({
+export const updateHabit = (habitId, updateType, update) => ({
     type: UPDATE_HABIT,
     payload: {
-        habit,
+        habitId,
+        updateType,
         update
     }
 });
@@ -54,10 +56,10 @@ export const removeStack = (stack) => ({
     payload: stack
 });
 
-export const updateStack = (stack, update) => ({
+export const updateStack = (stackId, update) => ({
     type: UPDATE_STACK,
     payload: {
-        stack,
+        stackId,
         update
     }
 });
