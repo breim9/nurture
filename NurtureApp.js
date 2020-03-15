@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { newHabit, removeHabit, logHabit, updateHabit, newStack, removeStack, updateStack, toggleStack, updatePrompt } from './src/redux/actions';
 import Timeline from './src/components/Timeline';
 import Stack from './src/components/Stack';
+import NewStackBuilder from './src/components/NewStackBuilder'
 import { PrimaryButton, DisabledButton, ConfirmationButton, WarningButton } from './src/components/Buttons';
 import { AddNew } from './src/components/AddNew';
 import { createUniqueId, getStacksInOrderedArray, getHabitsInOrderedArray } from './src/helpers.js';
@@ -87,6 +88,7 @@ class NurtureApp extends Component {
                     title="+ stack"
                     handler={() => this.handleNewStack(this.props.newStack)}
                 />
+                <NewStackBuilder />
                 {/* <PrimaryButton title="Enter" />
                 <DisabledButton title="Enter" />
                 <ConfirmationButton title="Enter" />
