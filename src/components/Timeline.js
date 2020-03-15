@@ -28,13 +28,13 @@ export default class Timeline extends Component {
             <TimelineWrapper>
                 <MonthText>January</MonthText>
                 <TimelineContainer>
-                    <Day name="Tue" date="08" />
-                    <Day name="Tue" date="08" />
-                    <Day name="Tue" date="08" />
-                    <Day name="Tue" date="08" />
-                    <Day name="Tue" date="08" />
-                    <Day name="Tue" date="08" />
-                    <Day name="Tue" date="08" />
+                    <Day name="Mon" date="02" />
+                    <Day name="Tue" date="03" />
+                    <Day name="Wed" date="04" />
+                    <Day name="Thu" date="05" />
+                    <Day name="Fri" date="06" />
+                    <Day name="Sat" date="07" />
+                    <Day name="Sun" date="08" />
                 </TimelineContainer>
             </TimelineWrapper>
         )

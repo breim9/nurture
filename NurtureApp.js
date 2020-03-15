@@ -8,7 +8,8 @@ import { newHabit, removeHabit, logHabit, updateHabit, newStack, removeStack, up
 import Timeline from './src/components/Timeline';
 import Stack from './src/components/Stack';
 import { PrimaryButton, DisabledButton, ConfirmationButton, WarningButton } from './src/components/Buttons';
-import { getHabitsInOrderNoIds, getStacksInOrderedArray } from './src/helpers.js';
+import { AddNew } from './src/components/AddNew';
+import { createUniqueId, getStacksInOrderedArray, getHabitsInOrderedArray } from './src/helpers.js';
 
 const Wrapper = styled.SafeAreaView`
     backgroundColor: #FCFCFC;
@@ -18,34 +19,61 @@ const Wrapper = styled.SafeAreaView`
 class NurtureApp extends Component {
 
     getNextPrompt(stackId) {
-        // ! move this over to getHabitsInOrderedArray
-        let habits = getHabitsInOrderNoIds(stackId, this.props.stacks, this.props.habits);
-        if (habits.length === 0) {
+        let habits = getHabitsInOrderedArray(stackId, this.props.habits);
+        if (habits.length === 0 || habits[0] === undefined) {
             return "Make your first habit";
-            // ! this should not be so, for the second stack
         }
-        let newPrompt = habits.find(habit => habit.currentState === "incomplete");
-        newPrompt.currentState === undefined ?
+        let newPrompt = habits.find(habit => habit[1].currentState === "incomplete");
+        newPrompt === undefined ?
             newPrompt = "Complete Stack!" :
-            newPrompt = `${newPrompt.cue} - ${newPrompt.action}`;
+            newPrompt = `${newPrompt[1].cue} - ${newPrompt[1].action}`;
         return newPrompt;
     }
 
-    renderStacks() {
+    handleNewStack() {
 
+        let stackId = createUniqueId();
+        let stackName = prompt("Stack Name");
+        let order = 2; //TODO build an order helper
+
+        let newStack =
+        {
+            [stackId]: {
+                name: [stackName],
+                frequency: 'daily',
+                habitKeys: [],
+                nextHabitInStackToDo: '',
+                completionState: 'incomplete',
+                order: [order],
+                stackIsOpen: false,
+                log: {},
+            }
+        }
+
+        alert("new stack!");
+        console.log("newStack ", newStack);
+        //this.props.newStack(newStack)
+    }
+
+    renderStacks() {
         let stackList = getStacksInOrderedArray(this.props.stacks);
         if (stackList.length === 0) return;
         let stacks = stackList.map(item => {
-            if (item === undefined) return;
-            return (
-                <Stack
-                    key={item[0]}
-                    stackId={item[0]}
-                    title={item[1].name}
-                    prompt={this.getNextPrompt(item[0])}
-                    isOpen={item[1].stackIsOpen}
-                />
-            )
+            console.log("item: ", item);
+            if (item === undefined) {
+                return <Text>Build your first habit!</Text>
+            }
+            else {
+                return (
+                    <Stack
+                        key={item[0]}
+                        stackId={item[0]}
+                        title={item[1].name}
+                        prompt={this.getNextPrompt(item[0])}
+                        isOpen={item[1].stackIsOpen}
+                    />
+                )
+            }
         });
         return stacks;
     }
@@ -56,6 +84,10 @@ class NurtureApp extends Component {
             <Wrapper>
                 <Timeline />
                 {stacks}
+                <AddNew
+                    title="+ stack"
+                    handler={this.handleNewStack}
+                />
                 {/* <PrimaryButton title="Enter" />
                 <DisabledButton title="Enter" />
                 <ConfirmationButton title="Enter" />
