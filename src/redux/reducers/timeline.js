@@ -5,6 +5,8 @@ const initialState = {
     '07082020': { UIDayName: 'Mon', UIDate: '07', result: 'success' }
 }
 
+// look into https://github.com/wix/react-native-calendars
+
 const timeline = (state = initialState, action) => {
     let newState = { ...state };
 

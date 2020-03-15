@@ -8,6 +8,7 @@ export const UPDATE_HABIT = "UPDATE_HABIT";
 export const NEW_STACK = "NEW_STACK";
 export const REMOVE_STACK = "REMOVE_STACK";
 export const UPDATE_STACK = "UPDATE_STACK";
+export const TOGGLE_STACK = "TOGGLE_STACK";
 
 export const ADD_NEW_DAY = "ADD_NEW_DAY";
 export const UPDATE_DAY_RESULT = "UPDATE_DAY_RESULT";

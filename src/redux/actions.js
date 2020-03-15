@@ -7,6 +7,7 @@ import {
     NEW_STACK,
     REMOVE_STACK,
     UPDATE_STACK,
+    TOGGLE_STACK,
     ADD_NEW_DAY,
     UPDATE_DAY_RESULT,
     VIEW_SELECTED_DAY
@@ -61,6 +62,13 @@ export const updateStack = (stackId, update) => ({
     payload: {
         stackId,
         update
+    }
+});
+
+export const toggleStack = (stackId) => ({
+    type: TOGGLE_STACK,
+    payload: {
+        stackId
     }
 });
 
