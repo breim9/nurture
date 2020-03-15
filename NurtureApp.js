@@ -30,29 +30,28 @@ class NurtureApp extends Component {
         return newPrompt;
     }
 
-    handleNewStack() {
+    handleNewStack(newStack) {
 
         let stackId = createUniqueId();
-        let stackName = prompt("Stack Name");
+        let stackName = "Stack Name";
         let order = 2; //TODO build an order helper
 
-        let newStack =
+        let stack =
         {
             [stackId]: {
-                name: [stackName],
+                name: stackName,
                 frequency: 'daily',
                 habitKeys: [],
                 nextHabitInStackToDo: '',
                 completionState: 'incomplete',
-                order: [order],
+                order: order,
                 stackIsOpen: false,
                 log: {},
             }
         }
 
         alert("new stack!");
-        console.log("newStack ", newStack);
-        //this.props.newStack(newStack)
+        newStack(stack);
     }
 
     renderStacks() {
@@ -86,7 +85,7 @@ class NurtureApp extends Component {
                 {stacks}
                 <AddNew
                     title="+ stack"
-                    handler={this.handleNewStack}
+                    handler={() => this.handleNewStack(this.props.newStack)}
                 />
                 {/* <PrimaryButton title="Enter" />
                 <DisabledButton title="Enter" />
