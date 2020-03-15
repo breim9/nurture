@@ -1,39 +1,40 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
+import * as color from '../constants/colors';
 
 
 const ButtonContainer = styled.TouchableOpacity`
     padding: 12px 36px;
     margin: 12px 24px;
-    backgroundColor: #F3BE83;
     borderRadius: 9px;
     shadow-opacity: 0.15;
     shadow-radius: 5px;
     shadow-color: black;
     shadow-offset: 0px 2px;
+    backgroundColor: ${color.brown500};
     ${props => props.disabled && css`
-        backgroundColor: #F2F2F2;
+        backgroundColor: ${color.gray100};
     `}
     ${props => props.confirmation && css`
-        backgroundColor: #D7EFE5;
+        backgroundColor: ${color.green300};
     `}
     ${props => props.warning && css`
-        backgroundColor: #FADCDC;
+        backgroundColor: ${color.red100};
     `}
 `
 const ButtonText = styled.Text`
-    color: #A67A49;
     fontSize: 18px;
     fontWeight: bold;
+    color: ${color.brown900};
     ${props => props.disabled && css`
-        color: #B3B3B3;
+        color: ${color.gray300};
     `}
     ${props => props.confirmation && css`
-        color: #3B9974;
+        color: ${color.green700};
     `}
     ${props => props.warning && css`
-        color: #F38C8C;
+        color: ${color.red500};
     `}
 `
 

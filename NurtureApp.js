@@ -8,7 +8,6 @@ import { PrimaryButton, DisabledButton, ConfirmationButton, WarningButton } from
 
 class NurtureApp extends Component {
 
-
     render() {
         return (
             <SafeAreaView style={{ alignItems: "flex-start" }}>
