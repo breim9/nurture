@@ -88,7 +88,7 @@ class NurtureApp extends Component {
                     title="+ stack"
                     handler={() => this.handleNewStack(this.props.newStack)}
                 />
-                <NewStackBuilder />
+                {/* <NewStackBuilder /> */}
                 {/* <PrimaryButton title="Enter" />
                 <DisabledButton title="Enter" />
                 <ConfirmationButton title="Enter" />
